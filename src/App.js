@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from './components/Table';
+import Register from './components/Register';
 
 
 class App extends Component {
@@ -20,46 +21,14 @@ class App extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                this.setState({ products: data.products})
-            }
-            else {
-                console.log((err) => err);
-            }
-        })
-    }
-
-    fetchModificar = (event) => {
-        event.preventDefault();
-        fetch("http://localhost:8000/api/products/" + this.state.selectedProdId, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                product: this.state.registerProduct,
-                price: this.state.registerPrice,
+            .then(data => {
+                if (data.success) {
+                    this.setState({ products: data.products })
+                }
+                else {
+                    console.log((err) => err);
+                }
             })
-        }).then( response => response.json())
-        .then(data => {
-            console.log(data, "PUT DATA");
-            if (data.success) {
-                this.setState((prevState) => {
-                    const currentProduct = [...prevState.products]; 
-                    const id = parseInt(data.product.id);                 
-                    const productIndex = currentProduct.findIndex((pro) => pro.id === id);
-                    currentProduct[productIndex] = data.product;
-                    return {
-                        products: currentProduct
-                    }
-                })
-                console.log("PUT: Receive from Backend");
-            }
-            else {
-                console.log("error");
-            }
-        })
     }
 
     fetchRegister = (event) => {
@@ -75,15 +44,16 @@ class App extends Component {
             })
         },
         )
-            .then(response => response.json() )
+            .then(response => response.json())
             .then(data => {
                 console.log(data, "data")
                 if (data.success) {
                     this.setState((prevState) => {
-                        const currentProduct = [...prevState.products]; 
+                        const currentProduct = [...prevState.products];
                         const myNewProduct = {
                             product: data.product,
                             price: data.price,
+                            id: data.id,
                         };
                         currentProduct.push(myNewProduct)
                         return {
@@ -96,10 +66,68 @@ class App extends Component {
                     console.log("error");
                 }
             })
+            .catch(err => console.log(err, "FetchRegister"));
+    }
+
+    fetchModify = (event) => {
+        event.preventDefault();
+        fetch("http://localhost:8000/api/products/" + this.state.selectedProdId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                product: this.state.registerProduct,
+                price: this.state.registerPrice,
+            })
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data, "PUT DATA");
+                if (data.success) {
+                    this.setState((prevState) => {
+                        const currentProduct = [...prevState.products];
+                        const id = parseInt(data.product.id);
+                        const productIndex = currentProduct.findIndex((pro) => pro.id === id);
+                        currentProduct[productIndex] = data.product;
+                        return {
+                            products: currentProduct
+                        }
+                    })
+                    console.log("PUT: Receive from Backend");
+                }
+                else {
+                    console.log("error");
+                }
+            })
+            .catch(err => console.log(err, "FetchModify"));
+    }
+
+    fetchDelete = (productid) => {
+        fetch("http://localhost:8000/api/products/" + productid, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.setState((prevState) => {
+                        const currentProduct  = prevState.products.filter(pro => pro.id !== productid);
+                        return {
+                            products: currentProduct,
+                        }
+                    })
+                    console.log("DELETE: Receive from Backend");
+                }
+                else {
+                    console.log("error");
+                }
+            })
+            .catch(err => console.log(err, "FetchDelete"));
     }
 
     onProductChange = (event) => {
-        this.setState({ registerProduct: event.target.value})
+        this.setState({ registerProduct: event.target.value })
     }
 
     onPriceChange = (event) => {
@@ -109,41 +137,25 @@ class App extends Component {
     handlenEdit = (product) => {
         this.setState({
             registerProduct: product.product,
-             registerPrice: product.price,
-             show: true,
-             selectedProdId: product.id,
-            });
+            registerPrice: product.price,
+            show: true,
+            selectedProdId: product.id,
+        });
         console.log(product, "product");
-
-
     }
     cancel = () => {
-        this.setState({show: false, registerProduct: "", registerPrice: "", selectedProdId: null});
+        this.setState({ show: false, registerProduct: "", registerPrice: "", selectedProdId: null });
     }
 
 
     render() {
         return (
             <div className="App">
-                <h1>Register</h1>
-                <label>Product</label>
-                <input
-                    className="input-nosubmit"
-                    type="name"
-                    onChange={this.onProductChange}
-                    value={this.state.registerProduct}
-                />
-                <label>Price</label>
-                <input
-                    className="input-nosubmit"
-                    type="email"
-                    onChange={this.onPriceChange}
-                    value={this.state.registerPrice}
-                />
-                <button className='submit-buttom' type="button" onClick={this.state.show ? this.fetchModificar : this.fetchRegister}>{this.state.show ? "Modificar" : "Register"}</button>
-                {this.state.show && <button className='submit-buttom' type="button" onClick={this.cancel} >Cancel</button>}
+                <Register show={this.state.show} registerPrice={this.state.registerPrice} registerProduct={this.state.registerProduct} 
+                onProductChange={this.onProductChange} onPriceChange={this.onPriceChange} onFetchModify={this.fetchModify} 
+                cancel={this.cancel} onFetchRegister={this.fetchRegister}/>
 
-                <Table products={this.state.products} onEdit={this.handlenEdit}/>
+                <Table products={this.state.products} onEdit={this.handlenEdit} onFetchDelete={this.fetchDelete} />
             </div>
         );
     }

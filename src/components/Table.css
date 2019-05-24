@@ -1,4 +1,17 @@
-.bording-table, .bording-table tr, .bording-table td {
+.bording-table {
+    width: 340px;
     border: 1px solid black;
+    border-radius: 5px;
+}
+
+.bording-table, .bording-table tr, .bording-table td {
     margin-top: 15px;
+  }
+
+  .withoutborder {
+    border: none !important;
+  }
+
+  .delete-square {
+      width: 10px;
   }
