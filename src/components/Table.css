@@ -1,64 +1,65 @@
 .bording-table {
-    width: 90%;
-    border: 1px solid black;
-    border-radius: 5px;
+  width: 90%;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .bording-table, .bording-table tr, .bording-table td {
-    margin-top: 15px;
-  }
+  margin-top: 15px;
+}
 
-  .withoutborder {
-    border: none !important;
-  }
+.withoutborder {
+  border: none !important;
+}
 
-  .delete-square {
-      width: 10px;
-  }
+.delete-square {
+  width: 10px;
+}
   
+.squares {
+  font-size: 15px;
+}
+/* For Iphone 6S */
+  @media screen and (min-width: 374px) {
   .squares {
+    font-size: 7px;
+    width: 5px;
+  }
+  .withoutborder {
+    font-size: 8px;
+  }
+  .submit-buttomaaa {
+    height: 14px;
+    font-size: 6px;
+  }
+}
+/* For Ipad */
+  @media screen and (min-width: 729px) {
+  .squares {
+    font-size: 13px;
+  }
+  .withoutborder {
     font-size: 15px;
   }
-
-  @media screen and (min-width: 374px) {
-    .squares {
-      font-size: 7px;
-      width: 5px;
-    }
-    .withoutborder {
-      font-size: 8px;
-    }
-    .submit-buttomaaa {
-      height: 14px;
-      font-size: 6px;
-    }
+  .submit-buttomaaa {
+    height: 15px;
+    font-size: 10px;
+  }
 }
 
-  @media screen and (min-width: 729px) {
-    .squares {
-      font-size: 13px;
-    }
-    .withoutborder {
-      font-size: 15px;
-    }
-    .submit-buttomaaa {
-      height: 15px;
-      font-size: 10px;
-    }
-}
-
+/* For Lenovo */
   @media screen and (min-width: 1341px) {
-    .squares {
-      font-size: 20px;
-    }
-    .withoutborder {
-      font-size: 21px;
-    }
-    .bording-table {
-      width: 80%;
-    }
-    .submit-buttomaaa {
-      height: 25px;
-      font-size: 15px;
-    }
+  .squares {
+    font-size: 20px;
+  }
+  .withoutborder {
+    font-size: 21px;
+  }
+  .bording-table {
+    width: 80%;
+  }
+  .submit-buttomaaa {
+    height: 25px;
+    font-size: 15px;
+  }
 }
