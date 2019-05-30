@@ -16,7 +16,7 @@ const Table = (props) => {
                             <td className="squares">{product.product}</td>
                             <td className="squares">${product.price}</td>
                             <td className="squares"><button className='submit-buttomaaa' type="button" onClick={() => props.onEdit(product)}>Edit</button></td>
-                            <td className="delete-square"> <button className='submit-buttomaaa' type="button"onClick={() => props.onFetchDelete(product.id)}>Delete</button></td>
+                            <td className="delete-square squares"> <button className='submit-buttomaaa' type="button"onClick={() => props.onFetchDelete(product.id)}>Delete</button></td>
                         </tr>
                     )
                            })}

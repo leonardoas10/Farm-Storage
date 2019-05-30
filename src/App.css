@@ -1,12 +1,20 @@
 .App {
-  width: 30%;
+  width: 40%;
   background-image: linear-gradient(to right, RGB(15, 253, 2), RGB(255, 255, 255));
   border-radius: 5px;
   display: flex;
   flex-flow: column;
   align-items: center;
   box-shadow: 3px 5px RGB(203, 203, 203);
-  margin-left: 35%;
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10%;
   padding-bottom: 10px;
+}
+
+@media screen and (min-width: 721px) {
+	.App {
+  width: 35%;
+	}
 }
