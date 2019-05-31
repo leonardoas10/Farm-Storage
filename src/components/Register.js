@@ -5,9 +5,9 @@ const Register = (props) => {
     return (
         <div className="register">
             <div className="title-flex">
-                <img src="https://img.icons8.com/doodle/62/000000/watermelon.png"></img>
+                <img alt="fruit" src="https://img.icons8.com/doodle/62/000000/watermelon.png"></img>
                 <h1>Farm Storage</h1>
-                <img src="https://img.icons8.com/doodle/62/000000/pear.png"></img>
+                <img  alt="fruit"src="https://img.icons8.com/doodle/62/000000/pear.png"></img>
             </div>
             <label>Product</label>
             <input

@@ -13,7 +13,18 @@
   padding-bottom: 10px;
 }
 
+@media screen and (min-width: 374px) {
+	.App {
+  width: 85%;
+	}
+}
 @media screen and (min-width: 721px) {
+	.App {
+  width: 65%;
+	}
+}
+
+@media screen and (min-width: 1321px) {
 	.App {
   width: 35%;
 	}

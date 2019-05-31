@@ -11,10 +11,6 @@
 .withoutborder {
   border: none !important;
 }
-
-.delete-square {
-  width: 10px;
-}
   
 .squares {
   font-size: 15px;
@@ -22,28 +18,28 @@
 /* For Iphone 6S */
   @media screen and (min-width: 374px) {
   .squares {
-    font-size: 7px;
+    font-size: 15px;
     width: 5px;
-  }
-  .withoutborder {
-    font-size: 8px;
-  }
-  .submit-buttomaaa {
-    height: 14px;
-    font-size: 6px;
-  }
-}
-/* For Ipad */
-  @media screen and (min-width: 729px) {
-  .squares {
-    font-size: 13px;
   }
   .withoutborder {
     font-size: 15px;
   }
   .submit-buttomaaa {
+    height: 14px;
+    font-size: 15px;
+  }
+}
+/* For Ipad */
+  @media screen and (min-width: 729px) {
+  .squares {
+    font-size: 25px;
+  }
+  .withoutborder {
+    font-size: 30px;
+  }
+  .submit-buttomaaa {
     height: 15px;
-    font-size: 10px;
+    font-size: 25px;
   }
 }
 
@@ -61,5 +57,24 @@
   .submit-buttomaaa {
     height: 25px;
     font-size: 15px;
+  }
+}
+/* For Samsung TV */
+@media screen and (min-width: 1919px) {
+  .squares {
+    font-size: 30px;
+  }
+  .withoutborder {
+    font-size: 30px;
+  }
+  .bording-table {
+    width: 80%;
+  }
+  .submit-buttomaaa {
+    height: 45px;
+    font-size: 30px;
+  }
+  .leftmargin {
+  padding-left: 25px;
   }
 }
