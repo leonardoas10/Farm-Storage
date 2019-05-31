@@ -19,7 +19,7 @@ const Table = (props) => {
                             <td className="delete-square squares"> <button className='submit-buttomaaa' type="button"onClick={() => props.onFetchDelete(product.id)}>Delete</button></td>
                         </tr>
                     )
-                           })}
+                })}
             </tbody>
         </table>
         );

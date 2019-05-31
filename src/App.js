@@ -23,12 +23,13 @@ class App extends Component {
         }).then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    this.setState({ products: data.products })
+                    this.setState( {products: data.products })  
                 }
                 else {
                     console.log((err) => err);
                 }
             })
+            .catch(err => console.log("Error componentDidMount", err));
     }
 
     fetchRegister = (event) => {
@@ -36,7 +37,8 @@ class App extends Component {
         fetch("http://localhost:8000/api/products", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept':'application/json',
             },
             body: JSON.stringify({
                 product: this.state.registerProduct,
